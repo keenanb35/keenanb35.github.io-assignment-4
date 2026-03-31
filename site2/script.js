@@ -1,10 +1,9 @@
-// Commit 1: Setup data and base URL
+// Commit 2: Setup data + thumbnails
 const displayedImage = document.querySelector(".displayed-img");
 const thumbBar = document.querySelector(".thumb-bar");
 const btn = document.querySelector("button");
 const overlay = document.querySelector(".overlay");
 
-// Array of images with filenames and alt text
 const images = [
   { filename: "pic1.jpg", alt: "Closeup of a human eye" },
   { filename: "pic2.jpg", alt: "Rock that looks like a wave" },
@@ -13,5 +12,13 @@ const images = [
   { filename: "pic5.jpg", alt: "Large moth on a leaf" }
 ];
 
-// Base URL for images
 const baseURL = "https://mdn.github.io/shared-assets/images/examples/learn/gallery/";
+
+// Create thumbnails
+for (const image of images) {
+  const thumb = document.createElement("img");
+  thumb.src = baseURL + image.filename;
+  thumb.alt = image.alt;
+  thumb.tabIndex = 0;
+  thumbBar.appendChild(thumb);
+}
