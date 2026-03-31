@@ -5,7 +5,7 @@
     JavaScript setup for random story generator.
 -->
 
-// COMMIT 4 (includes COMMIT 3)
+// COMMIT 5 (includes COMMIT 4)
 const customName = document.getElementById("custom-name");
 const generateBtn = document.querySelector(".generate");
 const story = document.querySelector(".story");
@@ -50,6 +50,22 @@ generateBtn.addEventListener("click", generateStory);
 
 function generateStory() {
   let newStory = returnRandomStoryString();
+
+  // Custom name replacement
+  if (customName.value !== "") {
+    const name = customName.value;
+    newStory = newStory.replace("Bob", name);
+  }
+
+  // UK conversion
+  if (document.getElementById("uk").checked) {
+    const weight = Math.round(300 / 14) + " stone";
+    const temperature = Math.round((94 - 32) * 5 / 9) + " Celsius";
+
+    newStory = newStory.replace("300 pounds", weight);
+    newStory = newStory.replace("94 Fahrenheit", temperature);
+  }
+
   story.textContent = newStory;
   story.style.visibility = "visible";
 }
