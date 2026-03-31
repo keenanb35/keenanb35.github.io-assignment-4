@@ -1,0 +1,51 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  text-align: center;
+}
+
+.full-img {
+  position: relative;
+  display: inline-block;
+}
+
+.displayed-img {
+  width: 600px;
+  height: auto;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 100%;
+  background-color: rgba(0,0,0,0); /* starts transparent */
+  pointer-events: none; /* lets clicks pass to the image */
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.thumb-bar {
+  margin-top: 20px;
+}
+
+.thumb-bar img {
+  width: 100px;
+  height: auto;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+
+.thumb-bar img:hover,
+.thumb-bar img:focus {
+  border-color: purple;
+}
