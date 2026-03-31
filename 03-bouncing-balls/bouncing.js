@@ -1,4 +1,4 @@
-// Commit 3: Add Ball update() method (includes commits 1 + 2)
+// Commit 4: Animate multiple balls (includes commits 1 + 2 + 3)
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -43,3 +43,34 @@ class Ball {
     this.y += this.velY;
   }
 }
+
+// Create balls array
+const balls = [];
+
+while (balls.length < 25) {
+  const size = random(10, 20);
+  const ball = new Ball(
+    random(size, width - size),
+    random(size, height - size),
+    random(-7, 7),
+    random(-7, 7),
+    randomRGB(),
+    size
+  );
+  balls.push(ball);
+}
+
+// Animate balls
+function loop() {
+  ctx.fillStyle = "rgb(0 0 0 / 25%)";
+  ctx.fillRect(0, 0, width, height);
+
+  for (const ball of balls) {
+    ball.draw();
+    ball.update();
+  }
+
+  requestAnimationFrame(loop);
+}
+
+loop();
