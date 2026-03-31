@@ -1,4 +1,4 @@
-// index.js - Commit 4
+// index.js - Commit 5
 // Previous code
 const form = document.querySelector('form');
 
@@ -11,17 +11,33 @@ form.addEventListener('submit', function(event) {
   const email = document.querySelector('#email').value;
   const phone = document.querySelector('#phone').value;
 
-  console.log('Text inputs:', { name, email, phone });
-
   // Radio button inputs
   const porridge = document.querySelector('input[name="porridge"]:checked').value;
   const beds = document.querySelector('input[name="beds"]:checked').value;
 
-  console.log('Radio selections:', { porridge, beds });
-
-  // Checkbox inputs (multiple selections)
+  // Checkbox inputs
   const chairs = Array.from(document.querySelectorAll('input[name="chairs"]:checked'))
                       .map(cb => cb.value);
 
-  console.log('Checkbox selections:', chairs);
+  // Dropdown inputs
+  const favoriteBear = document.querySelector('#favorite-bear').value;
+  const greeting = document.querySelector('#greeting-preference').value;
+
+  // Textarea input
+  const comments = document.querySelector('#comments').value;
+
+  // Full form data object
+  const formData = {
+    name,
+    email,
+    phone,
+    porridge,
+    beds,
+    chairs,
+    favoriteBear,
+    greeting,
+    comments
+  };
+
+  console.log('Full form data:', formData);
 });
