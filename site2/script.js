@@ -1,4 +1,4 @@
-// Commit 4: Data + thumbnails + click + keyboard accessibility
+// Commit 5: Full final script including darken/lighten
 const displayedImage = document.querySelector(".displayed-img");
 const thumbBar = document.querySelector(".thumb-bar");
 const btn = document.querySelector("button");
@@ -23,7 +23,7 @@ for (const image of images) {
   thumbBar.appendChild(thumb);
 }
 
-// Click handler
+// Click and keyboard handlers
 function updateDisplayedImage(event) {
   displayedImage.src = event.target.src;
   displayedImage.alt = event.target.alt;
@@ -31,11 +31,23 @@ function updateDisplayedImage(event) {
 
 for (const thumb of thumbBar.children) {
   thumb.addEventListener("click", updateDisplayedImage);
-
-  // Keyboard accessibility
   thumb.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       updateDisplayedImage(event);
     }
   });
 }
+
+// Darken/Lighten overlay button
+btn.addEventListener("click", function() {
+  const isDark = btn.classList.contains("dark");
+  if (isDark) {
+    btn.textContent = "Lighten";
+    overlay.style.backgroundColor = "rgb(0 0 0 / 0.5)";
+    btn.classList.remove("dark");
+  } else {
+    btn.textContent = "Darken";
+    overlay.style.backgroundColor = "rgb(0 0 0 / 0)";
+    btn.classList.add("dark");
+  }
+});
