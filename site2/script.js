@@ -1,4 +1,4 @@
-// Commit 2: Setup data + thumbnails
+// Commit 3: Data + thumbnails + click handler
 const displayedImage = document.querySelector(".displayed-img");
 const thumbBar = document.querySelector(".thumb-bar");
 const btn = document.querySelector("button");
@@ -21,4 +21,14 @@ for (const image of images) {
   thumb.alt = image.alt;
   thumb.tabIndex = 0;
   thumbBar.appendChild(thumb);
+}
+
+// Click handler for thumbnails
+function updateDisplayedImage(event) {
+  displayedImage.src = event.target.src;
+  displayedImage.alt = event.target.alt;
+}
+
+for (const thumb of thumbBar.children) {
+  thumb.addEventListener("click", updateDisplayedImage);
 }
