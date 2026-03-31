@@ -1,0 +1,26 @@
+/* 
+Name: Keenan Bombino
+File: style.css
+Date:  2026-03-31
+Styles for the bouncing balls canvas project.
+*/
+
+body {
+  margin: 0;              /* Remove default margin */
+  overflow: hidden;       /* Prevent scrollbars */
+  background-color: black; /* Canvas background */
+  color: white;
+  font-family: sans-serif;
+}
+
+h1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;            /* Make sure it appears above canvas */
+}
+
+canvas {
+  display: block;         /* Remove inline spacing */
+  background-color: black;
+}
