@@ -1,4 +1,4 @@
-// Commit 4: Animate multiple balls (includes commits 1 + 2 + 3)
+// Commit 5: Add collision detection (includes all previous commits)
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -42,6 +42,20 @@ class Ball {
     this.x += this.velX;
     this.y += this.velY;
   }
+
+  collisionDetect() {
+    for (const ball of balls) {
+      if (this !== ball) {
+        const dx = this.x - ball.x;
+        const dy = this.y - ball.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.size + ball.size) {
+          this.color = ball.color = randomRGB();
+        }
+      }
+    }
+  }
 }
 
 // Create balls array
@@ -60,7 +74,7 @@ while (balls.length < 25) {
   balls.push(ball);
 }
 
-// Animate balls
+// Animate balls with collision detection
 function loop() {
   ctx.fillStyle = "rgb(0 0 0 / 25%)";
   ctx.fillRect(0, 0, width, height);
@@ -68,6 +82,7 @@ function loop() {
   for (const ball of balls) {
     ball.draw();
     ball.update();
+    ball.collisionDetect();
   }
 
   requestAnimationFrame(loop);
