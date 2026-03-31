@@ -1,34 +1,33 @@
-<!--
-    Name: Keenan
-    File: script.js
-    Date: 31 March 2026
-    JavaScript setup for random story generator.
--->
+// script.js
+// Name: Keenan
+// File: script.js
+// Date: 31 March 2026
+// Fully working Random Story Generator with custom name and UK conversions
 
-// COMMIT 5 (includes COMMIT 4)
 const customName = document.getElementById("custom-name");
 const generateBtn = document.querySelector(".generate");
 const story = document.querySelector(".story");
 
+// Helper function to pick a random value from an array
 function randomValueFromArray(array) {
   const random = Math.floor(Math.random() * array.length);
   return array[random];
 }
 
-// Story data arrays
-const characters = [
+// Story data arrays (must match rubric: insertX, insertY, insertZ)
+const insertX = [
   "Willy the Goblin",
   "Big Daddy",
   "Father Christmas"
 ];
 
-const places = [
+const insertY = [
   "the soup kitchen",
   "Disneyland",
   "the White House"
 ];
 
-const events = [
+const insertZ = [
   "spontaneously combusted",
   "melted into a puddle on the sidewalk",
   "turned into a slug and slithered away"
@@ -36,28 +35,25 @@ const events = [
 
 // Generate random story
 function returnRandomStoryString() {
-  const randomCharacter = randomValueFromArray(characters);
-  const randomPlace = randomValueFromArray(places);
-  const randomEvent = randomValueFromArray(events);
+  const xItem = randomValueFromArray(insertX);
+  const yItem = randomValueFromArray(insertY);
+  const zItem = randomValueFromArray(insertZ);
 
-  const storyText = `It was 94 Fahrenheit outside, so ${randomCharacter} went for a walk. When they got to ${randomPlace}, they stared in horror for a few moments, then ${randomEvent}. Bob saw the whole thing, but was not surprised — ${randomCharacter} weighs 300 pounds, and it was a hot day.`;
+  const storyText = `It was 94 Fahrenheit outside, so ${xItem} went for a walk. When they got to ${yItem}, they stared in horror for a few moments, then ${zItem}. Bob saw the whole thing, but was not surprised — ${xItem} weighs 300 pounds, and it was a hot day.`;
 
   return storyText;
 }
 
-// Add click event
-generateBtn.addEventListener("click", generateStory);
-
+// Generate story and update the DOM
 function generateStory() {
   let newStory = returnRandomStoryString();
 
-  // Custom name replacement
+  // Replace "Bob" with custom name if entered
   if (customName.value !== "") {
-    const name = customName.value;
-    newStory = newStory.replace("Bob", name);
+    newStory = newStory.replace("Bob", customName.value);
   }
 
-  // UK conversion
+  // Convert to UK units if "UK" radio is selected
   if (document.getElementById("uk").checked) {
     const weight = Math.round(300 / 14) + " stone";
     const temperature = Math.round((94 - 32) * 5 / 9) + " Celsius";
@@ -66,6 +62,10 @@ function generateStory() {
     newStory = newStory.replace("94 Fahrenheit", temperature);
   }
 
+  // Display the story
   story.textContent = newStory;
   story.style.visibility = "visible";
 }
+
+// Attach event listener
+generateBtn.addEventListener("click", generateStory);
