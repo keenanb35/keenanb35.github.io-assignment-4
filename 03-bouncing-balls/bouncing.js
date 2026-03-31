@@ -1,26 +1,34 @@
-/* 
-Name: Keenan Bombino
-File: style.css
-Date:  2026-03-31
-Styles for the bouncing balls canvas project.
-*/
+// Commit 2: Add Ball class with draw method (includes commit 1)
 
-body {
-  margin: 0;              /* Remove default margin */
-  overflow: hidden;       /* Prevent scrollbars */
-  background-color: black; /* Canvas background */
-  color: white;
-  font-family: sans-serif;
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+const width = (canvas.width = window.innerWidth);
+const height = (canvas.height = window.innerHeight);
+
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-h1 {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;            /* Make sure it appears above canvas */
+function randomRGB() {
+  return `rgb(${random(0, 255)} ${random(0, 255)} ${random(0, 255)})`;
 }
 
-canvas {
-  display: block;         /* Remove inline spacing */
-  background-color: black;
+// Ball class with draw() method
+class Ball {
+  constructor(x, y, velX, velY, color, size) {
+    this.x = x;
+    this.y = y;
+    this.velX = velX;
+    this.velY = velY;
+    this.color = color;
+    this.size = size;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
+  }
 }
