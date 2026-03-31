@@ -1,4 +1,4 @@
-// Commit 3: Data + thumbnails + click handler
+// Commit 4: Data + thumbnails + click + keyboard accessibility
 const displayedImage = document.querySelector(".displayed-img");
 const thumbBar = document.querySelector(".thumb-bar");
 const btn = document.querySelector("button");
@@ -23,7 +23,7 @@ for (const image of images) {
   thumbBar.appendChild(thumb);
 }
 
-// Click handler for thumbnails
+// Click handler
 function updateDisplayedImage(event) {
   displayedImage.src = event.target.src;
   displayedImage.alt = event.target.alt;
@@ -31,4 +31,11 @@ function updateDisplayedImage(event) {
 
 for (const thumb of thumbBar.children) {
   thumb.addEventListener("click", updateDisplayedImage);
+
+  // Keyboard accessibility
+  thumb.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      updateDisplayedImage(event);
+    }
+  });
 }
