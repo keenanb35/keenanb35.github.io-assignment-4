@@ -1,4 +1,4 @@
-// index.js - Commit 3
+// index.js - Commit 4
 // Previous code
 const form = document.querySelector('form');
 
@@ -18,4 +18,10 @@ form.addEventListener('submit', function(event) {
   const beds = document.querySelector('input[name="beds"]:checked').value;
 
   console.log('Radio selections:', { porridge, beds });
+
+  // Checkbox inputs (multiple selections)
+  const chairs = Array.from(document.querySelectorAll('input[name="chairs"]:checked'))
+                      .map(cb => cb.value);
+
+  console.log('Checkbox selections:', chairs);
 });
