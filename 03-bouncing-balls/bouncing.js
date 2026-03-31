@@ -1,4 +1,4 @@
-// Commit 2: Add Ball class with draw method (includes commit 1)
+// Commit 3: Add Ball update() method (includes commits 1 + 2)
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -14,7 +14,6 @@ function randomRGB() {
   return `rgb(${random(0, 255)} ${random(0, 255)} ${random(0, 255)})`;
 }
 
-// Ball class with draw() method
 class Ball {
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
@@ -30,5 +29,17 @@ class Ball {
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
+  }
+
+  update() {
+    if (this.x + this.size >= width || this.x - this.size <= 0) {
+      this.velX = -this.velX;
+    }
+    if (this.y + this.size >= height || this.y - this.size <= 0) {
+      this.velY = -this.velY;
+    }
+
+    this.x += this.velX;
+    this.y += this.velY;
   }
 }
