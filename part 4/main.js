@@ -136,3 +136,34 @@ class EvilCircle extends Shape {
 
 // add EvilCircle instance
 const evilCircle = new EvilCircle(50, 50);
+// previous code from commits 1–4
+
+const para = document.querySelector("p");
+
+function updateBallCount() {
+  const count = balls.filter((b) => b.exists).length;
+  para.textContent = `Ball count: ${count}`;
+}
+
+function loop() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+  ctx.fillRect(0, 0, width, height);
+
+  for (const ball of balls) {
+    if (ball.exists) {
+      ball.draw();
+      ball.update();
+      ball.collisionDetect();
+    }
+  }
+
+  evilCircle.draw();
+  evilCircle.checkBounds();
+  evilCircle.collisionDetect();
+
+  updateBallCount();
+
+  requestAnimationFrame(loop);
+}
+
+loop();
