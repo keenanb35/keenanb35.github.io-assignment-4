@@ -1,6 +1,6 @@
-// main.js - Commit 2
+// main.js - Commit 3
 
-// Canvas setup and helpers (from commit 1)
+// Canvas setup and helpers
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -15,7 +15,7 @@ function randomRGB() {
   return `rgb(${random(0,255)} ${random(0,255)} ${random(0,255)})`;
 }
 
-// Base Shape class
+// Shape class
 class Shape {
   constructor(x, y, velX, velY) {
     this.x = x;
@@ -49,4 +49,32 @@ class Ball extends Shape {
     this.x += this.velX;
     this.y += this.velY;
   }
+
+  collisionDetect() {
+    for (const ball of balls) {
+      if (this !== ball && ball.exists) {
+        const dx = this.x - ball.x;
+        const dy = this.y - ball.y;
+        const distance = Math.sqrt(dx*dx + dy*dy);
+        if (distance < this.size + ball.size) {
+          this.color = ball.color = randomRGB();
+        }
+      }
+    }
+  }
+}
+
+// Create balls array
+const balls = [];
+while (balls.length < 25) {
+  const size = random(10,20);
+  const ball = new Ball(
+    random(size, width - size),
+    random(size, height - size),
+    random(-7,7),
+    random(-7,7),
+    randomRGB(),
+    size
+  );
+  balls.push(ball);
 }
