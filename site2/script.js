@@ -1,4 +1,3 @@
-// Commit 5: Full final script including darken/lighten
 const displayedImage = document.querySelector(".displayed-img");
 const thumbBar = document.querySelector(".thumb-bar");
 const btn = document.querySelector("button");
@@ -43,11 +42,11 @@ btn.addEventListener("click", function() {
   const isDark = btn.classList.contains("dark");
   if (isDark) {
     btn.textContent = "Lighten";
-    overlay.style.backgroundColor = "rgb(0 0 0 / 0.5)";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
     btn.classList.remove("dark");
   } else {
     btn.textContent = "Darken";
-    overlay.style.backgroundColor = "rgb(0 0 0 / 0)";
+    overlay.style.backgroundColor = "rgba(0,0,0,0)";
     btn.classList.add("dark");
   }
 });
