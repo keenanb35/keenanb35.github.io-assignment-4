@@ -1,0 +1,33 @@
+/* 
+Name: Your Name
+File: style.css
+Date: 31 March 2026
+Styles for the Part 4 bouncing balls demo with EvilCircle and score counter.
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+p {
+  position: absolute;
+  margin: 0;
+  top: 35px;
+  right: 5px;
+  color: #aaaaaa;
+  font-size: 18px;
+}
+
+canvas {
+  display: block;
+}
